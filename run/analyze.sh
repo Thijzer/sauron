@@ -1,7 +1,7 @@
 SAURON_DIR=$(pwd)
 
-LEVEL=3
-#PROJECT=$1
+PSALM_LEVEL=3
+STAN_LEVEL=3
 PROJECT='/project'
 
 phpcs()
@@ -11,8 +11,9 @@ phpcs()
 
 psalm()
 {
-    cd $PROJECT
-    ${SAURON_DIR}/vendor/bin/psalm -i src ${LEVEL}
+    #     cd $PROJECT
+    cd $1 
+    ${SAURON_DIR}/vendor/bin/psalm -i src ${PSALM_LEVEL}
     php ${SAURON_DIR}/vendor/bin/psalm
     rm -f psalm.xml
     # back to previous folder
@@ -21,8 +22,9 @@ psalm()
 
 phpstan()
 {
-    cd $PROJECT
-    ${SAURON_DIR}/vendor/bin/phpstan analyse -l ${LEVEL} src 
+    #     cd $PROJECT
+    cd $1
+    ${SAURON_DIR}/vendor/bin/phpstan analyse -l ${STAN_LEVEL} src
     # back to previous folder
     cd -
 }
